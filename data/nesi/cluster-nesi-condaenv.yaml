@@ -1,0 +1,10 @@
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - subread ==1.6.4
+  - samtools ==1.9
+  - bwa ==0.7.17
+  - sickle-trim ==1.33
+  - snakemake ==5.4.3
