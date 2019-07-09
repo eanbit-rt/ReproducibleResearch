@@ -70,3 +70,4 @@ rule featurecount:
     shell:
         "featureCounts -T {threads} -t exon -g gene_id -a {input.gtf} -o {output} {input.bams}"
         " 2> {log}"
+
