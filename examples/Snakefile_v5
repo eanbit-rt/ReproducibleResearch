@@ -1,0 +1,22 @@
+SAMPLES, = glob_wildcards("fastq/{sample}.fastq.gz")
+
+rule all:
+    input:
+        expand("analyses/results/{sample}.trimmed.fastq.gz", sample=SAMPLES)
+
+rule trimse:
+    input:
+        "fastq/{sample}.fastq.gz"
+    output:
+        "analyses/results/{sample}.trimmed.fastq.gz"
+    log:
+        "analyses/logs/{sample}.trimse"
+    benchmark:
+        "analyses/benchmarks/{sample}.trimse"
+    conda:
+        "envs/sickle.yaml"
+    params:
+        qualtype="sanger"
+    shell:
+        "sickle se -g -t {params.qualtype} -f {input} -o {output}"
+        " 2> {log}"

@@ -1,0 +1,13 @@
+rule all:
+    input:
+        "analyses/results/SRR941826.trimmed.fastq.gz"
+
+rule trimse:
+    input:
+        "fastq/SRR941826.fastq.gz"
+    output:
+        "analyses/results/SRR941826.trimmed.fastq.gz"
+    params:
+        qualtype="sanger"
+    shell:
+        "sickle se -g -t {params.qualtype} -f {input} -o {output}"
